@@ -38,6 +38,12 @@
   </dependencyManagement>
 
   <dependencies>
+  
+  	<!-- https://github.com/eclipse/microprofile-opentracing -->
+	<dependency>
+	  <groupId>org.eclipse.microprofile.opentracing</groupId>
+	  <artifactId>microprofile-opentracing-api</artifactId>
+	</dependency>
 
     <dependency>
       <groupId>io.quarkus</groupId>
