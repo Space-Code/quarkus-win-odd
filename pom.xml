@@ -47,6 +47,13 @@
 			<artifactId>microprofile-opentracing-api</artifactId>
 		</dependency>
 
+		<!-- opentracing-mongo-driver -->
+		<dependency>
+			<groupId>io.opentracing.contrib</groupId>
+			<artifactId>opentracing-mongo-driver</artifactId>
+			<version>0.0.3</version>
+		</dependency>
+
 		<!-- microprofile-metrics-api -->
 		<dependency>
 			<groupId>org.eclipse.microprofile.metrics</groupId>
