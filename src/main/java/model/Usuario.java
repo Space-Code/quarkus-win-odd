@@ -6,19 +6,14 @@ import io.quarkus.mongodb.panache.PanacheMongoEntity;
 @MongoEntity(collection = "usuario")
 public class Usuario extends PanacheMongoEntity {
 
-    private String id;
     private String nome;
     private String email;
     private String senha;
 
     public Usuario() {}
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    
+    public static Usuario findByName(String nome) {
+        return find("nome", nome).firstResult();
     }
 
     public String getNome() {
