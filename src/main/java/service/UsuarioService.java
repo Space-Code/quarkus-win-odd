@@ -29,7 +29,7 @@ public class UsuarioService {
     }
 
 	public Response delete(String nome) {		
-		Usuario usuario = Usuario.findByName(nome);
+		Usuario usuario = findByName(nome);
 		usuario.delete();
 		return Response.status(201).build();
 	}

@@ -11,10 +11,6 @@ public class Usuario extends PanacheMongoEntity {
     private String senha;
 
     public Usuario() {}
-    
-    public static Usuario findByName(String nome) {
-        return find("nome", nome).firstResult();
-    }
 
     public String getNome() {
         return nome;
