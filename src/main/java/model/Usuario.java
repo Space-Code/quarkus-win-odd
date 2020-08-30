@@ -1,6 +1,10 @@
-package br.com.spacecode.model;
+package model;
 
-public class Usuario {
+import io.quarkus.mongodb.panache.MongoEntity;
+import io.quarkus.mongodb.panache.PanacheMongoEntity;
+
+@MongoEntity(collection = "usuario")
+public class Usuario extends PanacheMongoEntity {
 
     private String id;
     private String nome;
