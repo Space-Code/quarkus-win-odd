@@ -12,4 +12,9 @@ public class BancaService {
 		banca.persist();
 		return Response.status(201).build();
 	}
+	
+	public Response update(Banca banca) {
+		banca.update();
+        return Response.status(201).build();
+    }
 }
