@@ -9,6 +9,7 @@ public class Usuario extends PanacheMongoEntity {
     private String nome;
     private String email;
     private String senha;
+    private Banca banca;
 
     public Usuario() {}
 
@@ -35,4 +36,12 @@ public class Usuario extends PanacheMongoEntity {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+	public Banca getBanca() {
+		return banca;
+	}
+
+	public void setBanca(Banca banca) {
+		this.banca = banca;
+	}
 }
