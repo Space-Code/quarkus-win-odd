@@ -1,10 +1,20 @@
 package model;
 
-import io.quarkus.mongodb.panache.MongoEntity;
-import io.quarkus.mongodb.panache.PanacheMongoEntity;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@MongoEntity(collection = "diversos")
-public class Diversos extends PanacheMongoEntity {
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
+@Entity
+@Table(name = "diversos")
+public class Diversos extends PanacheEntityBase {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long id;
 	
 	private Banca bancaDiversos;
 	private String odd;

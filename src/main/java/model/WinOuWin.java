@@ -2,11 +2,21 @@ package model;
 
 import java.math.BigDecimal;
 
-import io.quarkus.mongodb.panache.MongoEntity;
-import io.quarkus.mongodb.panache.PanacheMongoEntity;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@MongoEntity(collection = "winouwin")
-public class WinOuWin extends PanacheMongoEntity {
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
+@Entity
+@Table(name = "winouwin")
+public class WinOuWin extends PanacheEntityBase {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long id;
 	
 	private String corretoraA;
 	private String corretoraB;
