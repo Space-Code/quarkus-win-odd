@@ -1,15 +1,24 @@
-package model;
+package br.com.spacecode.model;
 
-import io.quarkus.mongodb.panache.MongoEntity;
-import io.quarkus.mongodb.panache.PanacheMongoEntity;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@MongoEntity(collection = "usuario")
-public class Usuario extends PanacheMongoEntity {
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
+@Entity
+@Table(name = "usuario")
+public class Usuario extends PanacheEntityBase {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long id;
 
     private String nome;
     private String email;
     private String senha;
-    private Banca banca;
 
     public Usuario() {}
 
@@ -36,12 +45,4 @@ public class Usuario extends PanacheMongoEntity {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
-	public Banca getBanca() {
-		return banca;
-	}
-
-	public void setBanca(Banca banca) {
-		this.banca = banca;
-	}
 }

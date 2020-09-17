@@ -1,4 +1,4 @@
-package config;
+package br.com.spacecode.config;
 
 import javax.ws.rs.core.Application;
 
