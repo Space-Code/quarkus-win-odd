@@ -1,4 +1,4 @@
-package model;
+package br.com.spacecode.model;
 
 import java.math.BigDecimal;
 

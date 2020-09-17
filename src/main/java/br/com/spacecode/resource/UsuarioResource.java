@@ -1,4 +1,4 @@
-package resource;
+package br.com.spacecode.resource;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-import model.Usuario;
+import br.com.spacecode.model.Usuario;
 
 @Path("/usuario")
 @Tag(name = "usuarios")
