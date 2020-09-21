@@ -5,9 +5,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 import br.com.spacecode.dto.AdicionarUsuarioDTO;
-import br.com.spacecode.dto.AtualizarBancaDTO;
+import br.com.spacecode.dto.AtualizarUsuarioDTO;
 import br.com.spacecode.dto.UsuarioDTO;
-import br.com.spacecode.model.Banca;
 import br.com.spacecode.model.Usuario;
 
 @Mapper(componentModel = "cdi")
@@ -18,14 +17,14 @@ public interface UsuarioMapper {
     @Mapping(target = "dataCriacao", ignore = true)
     @Mapping(target = "dataAtualizacao", ignore = true)
     @Mapping(target = "banca.id", ignore = true)	
-    public Usuario toBanca(AdicionarUsuarioDTO dto);
+    public Usuario toUsuario(AdicionarUsuarioDTO dto);
 	
 	@Mapping(target = "nome", source = "nome")
-    public void toRestaurante(AtualizarBancaDTO dto, @MappingTarget Banca banca);
+    public void toUsuario(AtualizarUsuarioDTO dto, @MappingTarget Usuario usuario);
 
     @Mapping(target = "nome", source = "nome")
     
     @Mapping(target = "dataCriacao", dateFormat = "dd/MM/yyyy HH:mm:ss")
-    public UsuarioDTO toRestauranteDTO(Usuario u);
+    public UsuarioDTO toUsuarioDTO(Usuario u);
 
 }
