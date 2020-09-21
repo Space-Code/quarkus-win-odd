@@ -1,10 +1,17 @@
 package br.com.spacecode.model;
 
+import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
@@ -16,9 +23,17 @@ public class Usuario extends PanacheEntityBase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
-    private String nome;
-    private String email;
-    private String senha;
+	public String nome;
+	public String email;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    public Banca banca;
+    
+    @CreationTimestamp
+    public Date dataCriacao;
+
+    @UpdateTimestamp
+    public Date dataAtualizacao;
 
     public Usuario() {}
 
@@ -38,11 +53,4 @@ public class Usuario extends PanacheEntityBase {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
 }
