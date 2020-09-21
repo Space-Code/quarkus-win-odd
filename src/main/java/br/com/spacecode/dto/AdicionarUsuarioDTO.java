@@ -2,12 +2,9 @@ package br.com.spacecode.dto;
 
 import javax.validation.constraints.NotNull;
 
-public class AdicionarUsuario {
+public class AdicionarUsuarioDTO {
 	
 	@NotNull
 	public String nome;
-	
-	@NotNull
-	public String email;
 
 }

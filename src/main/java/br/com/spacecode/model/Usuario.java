@@ -24,7 +24,6 @@ public class Usuario extends PanacheEntityBase {
     public Long id;
 
 	public String nome;
-	public String email;
     
     @OneToOne(cascade = CascadeType.ALL)
     public Banca banca;
@@ -44,13 +43,4 @@ public class Usuario extends PanacheEntityBase {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
 }
