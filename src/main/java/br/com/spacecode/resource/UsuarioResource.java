@@ -45,11 +45,10 @@ import io.quarkus.security.ForbiddenException;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @RolesAllowed("proprietario")
-@SecurityScheme(securitySchemeName = "ifood-oauth", type = SecuritySchemeType.OAUTH2, flows = @OAuthFlows(password = @OAuthFlow(tokenUrl = "http://localhost:8180/auth/realms/winodd/protocol/openid-connect/token")))
+@SecurityScheme(securitySchemeName = "winodd-oauth", type = SecuritySchemeType.OAUTH2, flows = @OAuthFlows(password = @OAuthFlow(tokenUrl = "http://localhost:8180/auth/realms/winodd/protocol/openid-connect/token")))
 @SecurityRequirement(name = "ifood-oauth")
 public class UsuarioResource {
 
-	@Inject
 	UsuarioMapper usuarioMapper;
 
 	@Inject
