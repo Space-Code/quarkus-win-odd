@@ -2,8 +2,11 @@ package br.com.spacecode.dto;
 
 import java.math.BigDecimal;
 
-public class AtualizarBancaDTO {
+import javax.validation.constraints.NotNull;
+
+public class AdicionarBancaDTO {
 	
+	@NotNull
 	public BigDecimal valorBanca;
 
 }
