@@ -22,11 +22,21 @@ public class Banca extends PanacheEntityBase {
 
 	public Banca() {}
 
-	public BigDecimal getMinhaBanca() {
+	public BigDecimal getValorBanca() {
 		return valorBanca;
 	}
 
-	public void setMinhaBanca(BigDecimal minhaBanca) {
-		this.valorBanca = minhaBanca;
+	public void setValorBanca(BigDecimal valorBanca) {
+		this.valorBanca = valorBanca;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	
 }
