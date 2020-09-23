@@ -1,28 +1,22 @@
 package br.com.spacecode.resource;
 
-import java.util.Optional;
+import java.util.List;
 
-import javax.transaction.Transactional;
+import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.NotFoundException;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-import br.com.spacecode.dto.AdicionarBancaDTO;
-import br.com.spacecode.dto.AtualizarBancaDTO;
-import br.com.spacecode.mapper.BancaMapper;
 import br.com.spacecode.model.Banca;
-import br.com.spacecode.model.Usuario;
+import br.com.spacecode.service.BancaService;
 
 @Path("/banca")
 @Tag(name = "banca")
@@ -30,33 +24,21 @@ import br.com.spacecode.model.Usuario;
 @Consumes(MediaType.APPLICATION_JSON)
 public class BancaResource {
 	
-	BancaMapper bancaMapper;
+	@Inject
+	BancaService service;
 	
-	@POST
-	@Operation(description = "Cadastra banca no sistema", summary = "Cadastra banca")
-	public Response adicionar(@Valid AdicionarBancaDTO dto) {
-		Banca banca = bancaMapper.toBanca(dto);
-		banca.persist();
-
-		return Response.status(Status.CREATED).build();
+	@GET
+	@Path("/search")
+	@Operation(description = "Busca banca cadastrada no sistema", summary = "Busca todos as bancas")
+	public List<Banca> findAllBanca() {
+		return service.findAll();
 	}
 
-	@PUT
-	@Path("{id}")
-	@Operation(description = "Busca a banca no sistema e atualiza banca por id", summary = "Atualiza banca por id")
-	@Transactional
-	public void atualizar(@PathParam("id") Long id, AtualizarBancaDTO dto) {
-		Optional<Banca> banca = Usuario.findByIdOptional(id);
-
-		if (banca.isEmpty()) {
-			throw new NotFoundException();
-		}
-
-		Banca valorBanca = banca.get();
-
-		bancaMapper.toBanca(dto, valorBanca);
-
-		valorBanca.persist();
+	@POST
+	@Path("/save")
+	@Operation(description = "Cadastra banca no sistema", summary = "Cadastra banca")
+	public Response saveBanca(@Valid Banca banca) {
+		return service.save(banca);
 	}
 
 }
