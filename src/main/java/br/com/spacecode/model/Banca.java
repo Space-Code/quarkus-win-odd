@@ -18,15 +18,15 @@ public class Banca extends PanacheEntityBase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 	
-	private BigDecimal minhaBanca;
+	private BigDecimal valorBanca;
 
 	public Banca() {}
 
 	public BigDecimal getMinhaBanca() {
-		return minhaBanca;
+		return valorBanca;
 	}
 
 	public void setMinhaBanca(BigDecimal minhaBanca) {
-		this.minhaBanca = minhaBanca;
+		this.valorBanca = minhaBanca;
 	}
 }

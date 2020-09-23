@@ -5,8 +5,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.annotation.security.RolesAllowed;
-import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
@@ -22,15 +20,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.eclipse.microprofile.jwt.Claim;
-import org.eclipse.microprofile.jwt.Claims;
-import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.enums.SecuritySchemeType;
-import org.eclipse.microprofile.openapi.annotations.security.OAuthFlow;
-import org.eclipse.microprofile.openapi.annotations.security.OAuthFlows;
-import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement;
-import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import br.com.spacecode.dto.AdicionarUsuarioDTO;
@@ -38,25 +28,14 @@ import br.com.spacecode.dto.AtualizarUsuarioDTO;
 import br.com.spacecode.dto.UsuarioDTO;
 import br.com.spacecode.mapper.UsuarioMapper;
 import br.com.spacecode.model.Usuario;
-import io.quarkus.security.ForbiddenException;
 
 @Path("/usuario")
 @Tag(name = "usuarios")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@RolesAllowed("proprietario")
-@SecurityScheme(securitySchemeName = "winodd-oauth", type = SecuritySchemeType.OAUTH2, flows = @OAuthFlows(password = @OAuthFlow(tokenUrl = "http://localhost:8180/auth/realms/winodd/protocol/openid-connect/token")))
-@SecurityRequirement(name = "ifood-oauth")
 public class UsuarioResource {
 
 	UsuarioMapper usuarioMapper;
-
-	@Inject
-	JsonWebToken jwt;
-
-	@Inject
-	@Claim(standard = Claims.sub)
-	String sub;
 
 	@GET
 	@Operation(description = "Busca usuário cadastrados no sistema", summary = "Busca todos os usuários")
@@ -69,7 +48,6 @@ public class UsuarioResource {
 	@Operation(description = "Cadastra usuário no sistema", summary = "Cadastra usuário")
 	public Response adicionar(@Valid AdicionarUsuarioDTO dto) {
 		Usuario usuario = usuarioMapper.toUsuario(dto);
-		usuario.nome = sub;
 		usuario.persist();
 
 		return Response.status(Status.CREATED).build();
@@ -86,15 +64,11 @@ public class UsuarioResource {
 			throw new NotFoundException();
 		}
 
-		Usuario restaurante = usuario.get();
+		Usuario user = usuario.get();
 
-		if (!restaurante.nome.equals(sub)) {
-			throw new ForbiddenException();
-		}
+		usuarioMapper.toUsuario(dto, user);
 
-		usuarioMapper.toUsuario(dto, restaurante);
-
-		restaurante.persist();
+		user.persist();
 	}
 
 	@DELETE
