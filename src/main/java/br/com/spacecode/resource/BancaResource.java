@@ -51,8 +51,9 @@ public class BancaResource {
 	@Path("/save")
 	@Transactional
 	@Operation(description = "Cadastra banca no sistema", summary = "Cadastra banca")
-	public Response saveBanca(@Valid Banca banca) {
-		return service.save(banca);
+	public Banca saveBanca(@Valid Banca banca) {
+		service.save(banca);
+		return service.findById(banca.getId());
 	}
 
 	@PUT
