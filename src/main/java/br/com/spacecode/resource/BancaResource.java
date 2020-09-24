@@ -3,6 +3,7 @@ package br.com.spacecode.resource;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -29,6 +30,7 @@ public class BancaResource {
 	
 	@GET
 	@Path("/search")
+	@Transactional
 	@Operation(description = "Busca banca cadastrada no sistema", summary = "Busca todos as bancas")
 	public List<Banca> findAllBanca() {
 		return service.findAll();
@@ -36,6 +38,7 @@ public class BancaResource {
 
 	@POST
 	@Path("/save")
+	@Transactional
 	@Operation(description = "Cadastra banca no sistema", summary = "Cadastra banca")
 	public Response saveBanca(@Valid Banca banca) {
 		return service.save(banca);

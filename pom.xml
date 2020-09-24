@@ -7,7 +7,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.spacecode</groupId>
 	<artifactId>winodd</artifactId>
-	<version>1.0.32</version>
+	<version>1.0.35</version>
 
 	<properties>
 		<compiler-plugin.version>3.8.1</compiler-plugin.version>
@@ -58,16 +58,19 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>io.quarkus</groupId>
-			<artifactId>quarkus-jdbc-postgresql</artifactId>
-		</dependency>
-
+		<!-- Hibernate ORM specific dependencies -->
 		<dependency>
 			<groupId>io.quarkus</groupId>
 			<artifactId>quarkus-hibernate-orm-panache</artifactId>
 		</dependency>
 
+		<!-- JDBC driver dependencies -->
+		<dependency>
+			<groupId>io.quarkus</groupId>
+			<artifactId>quarkus-jdbc-postgresql</artifactId>
+		</dependency>
+
+		<!-- JSONB serialize JSON -->
 		<dependency>
 			<groupId>io.quarkus</groupId>
 			<artifactId>quarkus-resteasy-jsonb</artifactId>
