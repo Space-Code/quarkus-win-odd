@@ -18,26 +18,25 @@ public class WinOuWin extends PanacheEntityBase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 	
-	private BigDecimal oddA;
-	private BigDecimal oddB;
+	private BigDecimal totalInvestido;
 	private String tag;
 	
 	public WinOuWin() {}
 
-	public BigDecimal getOddA() {
-		return oddA;
+	public Long getId() {
+		return id;
 	}
 
-	public void setOddA(BigDecimal oddA) {
-		this.oddA = oddA;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public BigDecimal getOddB() {
-		return oddB;
+	public BigDecimal getTotalInvestido() {
+		return totalInvestido;
 	}
 
-	public void setOddB(BigDecimal oddB) {
-		this.oddB = oddB;
+	public void setTotalInvestido(BigDecimal totalInvestido) {
+		this.totalInvestido = totalInvestido;
 	}
 
 	public String getTag() {
@@ -46,5 +45,5 @@ public class WinOuWin extends PanacheEntityBase {
 
 	public void setTag(String tag) {
 		this.tag = tag;
-	}	
+	}
 }

@@ -1,5 +1,7 @@
 package br.com.spacecode.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,10 +19,10 @@ public class Diversos extends PanacheEntityBase {
     public Long id;
 	
 	private String tag;
-	private String odd;
+	private BigDecimal totalInvestido;
 	
 	public Diversos() {}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -37,11 +39,11 @@ public class Diversos extends PanacheEntityBase {
 		this.tag = tag;
 	}
 
-	public String getOdd() {
-		return odd;
+	public BigDecimal getTotalInvestido() {
+		return totalInvestido;
 	}
-	
-	public void setOdd(String odd) {
-		this.odd = odd;
+
+	public void setTotalInvestido(BigDecimal totalInvestido) {
+		this.totalInvestido = totalInvestido;
 	}
 }
