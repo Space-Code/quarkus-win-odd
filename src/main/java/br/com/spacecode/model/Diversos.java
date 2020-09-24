@@ -16,19 +16,27 @@ public class Diversos extends PanacheEntityBase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 	
-	private Banca bancaDiversos;
+	private String tag;
 	private String odd;
 	
 	public Diversos() {}
+	
+	public Long getId() {
+		return id;
+	}
 
-	public Banca getBancaDiversos() {
-		return bancaDiversos;
+	public void setId(Long id) {
+		this.id = id;
 	}
-	
-	public void setBancaDiversos(Banca bancaDiversos) {
-		this.bancaDiversos = bancaDiversos;
+
+	public String getTag() {
+		return tag;
 	}
-	
+
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+
 	public String getOdd() {
 		return odd;
 	}
